@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity PartSupplier.
+    -->
+    <changeSet id="20231030232658-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="part_id"
+                                 baseTableName="part_supplier"
+                                 constraintName="fk_part_supplier__part_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="part"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="supplier_id"
+                                 baseTableName="part_supplier"
+                                 constraintName="fk_part_supplier__supplier_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="supplier"
+                                 />
+    </changeSet>
+</databaseChangeLog>

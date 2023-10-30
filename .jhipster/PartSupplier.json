@@ -1,0 +1,44 @@
+{
+  "applications": ["parts"],
+  "changelogDate": "20231030232658",
+  "dto": "mapstruct",
+  "entityTableName": "part_supplier",
+  "fields": [
+    {
+      "fieldName": "price",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "PartSupplier",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "options": {
+        "id": true
+      },
+      "otherEntityField": "name",
+      "otherEntityName": "part",
+      "otherEntityRelationshipName": "partSupplier",
+      "relationshipName": "part",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "options": {
+        "id": true
+      },
+      "otherEntityField": "name",
+      "otherEntityName": "supplier",
+      "otherEntityRelationshipName": "partSupplier",
+      "relationshipName": "supplier",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

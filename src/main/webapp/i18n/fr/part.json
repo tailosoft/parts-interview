@@ -1,0 +1,30 @@
+{
+  "partsApp": {
+    "part": {
+      "home": {
+        "title": "Parts",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Part",
+        "editLabel": "Editer un Part",
+        "notFound": "Aucun Part trouvé"
+      },
+      "created": "Un nouveau Part a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Part avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Part avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Part {{ id }} ?"
+      },
+      "detail": {
+        "title": "Part"
+      },
+      "id": "ID",
+      "name": "Name",
+      "assemblyCost": "Assembly Cost",
+      "bestPrice": "Best Price",
+      "bestSupplier": "Best Supplier",
+      "child": "Child",
+      "parent": "Parent",
+      "partSupplier": "Part Supplier"
+    }
+  }
+}

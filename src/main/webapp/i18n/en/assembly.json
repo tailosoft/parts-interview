@@ -1,0 +1,25 @@
+{
+  "partsApp": {
+    "assembly": {
+      "home": {
+        "title": "Assemblies",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Assembly",
+        "editLabel": "Edit a Assembly",
+        "notFound": "No Assemblies found"
+      },
+      "created": "A new Assembly is created with identifier {{ param }}",
+      "updated": "A Assembly is updated with identifier {{ param }}",
+      "deleted": "A Assembly is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Assembly {{ id }}?"
+      },
+      "detail": {
+        "title": "Assembly"
+      },
+      "quantity": "Quantity",
+      "parent": "Parent",
+      "child": "Child"
+    }
+  }
+}

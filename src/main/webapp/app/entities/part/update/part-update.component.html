@@ -1,0 +1,101 @@
+<div class="entity-update">
+  <h2
+    class="title"
+    id="jhi-part-heading"
+    data-cy="PartCreateUpdateHeading"
+    jhiTranslate="partsApp.part.home.{{ editForm.value.id !== null ? 'editLabel' : 'createLabel' }}"
+  >
+    Create or edit a Part
+  </h2>
+  <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+    <div class="form-grid p-fluid update-content">
+      <div class="p-field p-grid">
+        <label jhiTranslate="partsApp.part.name" for="field_name" class="p-col-12 p-md-2 label-asterisk">Name</label>
+        <div class="p-col-12 p-md-10">
+          <input pInputText type="text" name="name" id="field_name" formControlName="name" data-cy="name" />
+          <div class="validation-messages">
+            <ng-container *ngIf="editForm.controls.name.errors && (editForm.controls.name.dirty || editForm.controls.name.touched)">
+              <p-message severity="error" *ngIf="editForm.controls.name.errors.required" [text]="'entity.validation.required' | translate">
+              </p-message>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <label jhiTranslate="partsApp.part.assemblyCost" for="field_assemblyCost" class="p-col-12 p-md-2">Assembly Cost</label>
+        <div class="p-col-12 p-md-10">
+          <input
+            pInputText
+            type="number"
+            name="assemblyCost"
+            id="field_assemblyCost"
+            formControlName="assemblyCost"
+            data-cy="assemblyCost"
+          />
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <label jhiTranslate="partsApp.part.bestPrice" for="field_bestPrice" class="p-col-12 p-md-2">Best Price</label>
+        <div class="p-col-12 p-md-10">
+          <input pInputText type="number" name="bestPrice" id="field_bestPrice" formControlName="bestPrice" data-cy="bestPrice" />
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <label jhiTranslate="partsApp.part.bestSupplier" for="field_best_supplier" class="p-col-12 p-md-2">Best Supplier</label>
+        <div class="p-col-12 p-md-10">
+          <p-dropdown
+            id="field_best_supplier"
+            formControlName="bestSupplier"
+            [options]="bestSupplierOptionsSubscriber!.options"
+            [lazy]="true"
+            [virtualScroll]="true"
+            [virtualScrollItemSize]="38"
+            (onLazyLoad)="onBestSupplierLazyLoadEvent($event)"
+            [filter]="true"
+            [filterValue]="bestSupplierFilterValue"
+            placeholder="Choose"
+            optionLabel="name"
+            dataKey="id"
+            data-cy="bestSupplier"
+          ></p-dropdown>
+          <div class="validation-messages">
+            <ng-container
+              *ngIf="
+                editForm.controls.bestSupplier.errors && (editForm.controls.bestSupplier.dirty || editForm.controls.bestSupplier.touched)
+              "
+            >
+              <p-message
+                severity="error"
+                *ngIf="editForm.controls.bestSupplier.errors.required"
+                [text]="'entity.validation.required' | translate"
+              >
+              </p-message>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="update-buttons">
+      <button
+        pButton
+        type="button"
+        id="cancel-save"
+        icon="pi pi-ban"
+        class="p-button-secondary"
+        (click)="previousState()"
+        [label]="'entity.action.cancel' | translate"
+        data-cy="entityCreateCancelButton"
+      ></button>
+      <button
+        pButton
+        type="submit"
+        id="save-entity"
+        icon="pi pi-save"
+        [disabled]="isSaving"
+        [label]="'entity.action.save' | translate"
+        data-cy="entityCreateSaveButton"
+      ></button>
+    </div>
+  </form>
+</div>

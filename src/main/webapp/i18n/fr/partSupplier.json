@@ -1,0 +1,25 @@
+{
+  "partsApp": {
+    "partSupplier": {
+      "home": {
+        "title": "PartSuppliers",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Part Supplier",
+        "editLabel": "Editer un Part Supplier",
+        "notFound": "Aucun Part Supplier trouvé"
+      },
+      "created": "Un nouveau Part Supplier a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Part Supplier avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Part Supplier avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Part Supplier {{ id }} ?"
+      },
+      "detail": {
+        "title": "Part Supplier"
+      },
+      "price": "Price",
+      "part": "Part",
+      "supplier": "Supplier"
+    }
+  }
+}

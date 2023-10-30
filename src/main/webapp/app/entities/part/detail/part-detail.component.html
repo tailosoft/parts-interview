@@ -1,0 +1,46 @@
+<div class="entity-detail" *ngIf="part">
+  <h2 class="title" data-cy="partDetailsHeading"><span jhiTranslate="partsApp.part.detail.title">Part</span> {{ part.id! }}</h2>
+
+  <dl class="detail-content jh-entity-details">
+    <dt><span jhiTranslate="global.field.id">ID</span></dt>
+    <dd>
+      <span>{{ part.id }}</span>
+    </dd>
+    <dt><span jhiTranslate="partsApp.part.name">Name</span></dt>
+    <dd>
+      <span>{{ part.name }}</span>
+    </dd>
+    <dt><span jhiTranslate="partsApp.part.assemblyCost">Assembly Cost</span></dt>
+    <dd>
+      <span>{{ part.assemblyCost }}</span>
+    </dd>
+    <dt><span jhiTranslate="partsApp.part.bestPrice">Best Price</span></dt>
+    <dd>
+      <span>{{ part.bestPrice }}</span>
+    </dd>
+    <dt><span jhiTranslate="partsApp.part.bestSupplier">Best Supplier</span></dt>
+    <dd>
+      <div *ngIf="part.bestSupplier">
+        <a [routerLink]="['/supplier', part.bestSupplier.id, 'view']">{{ part.bestSupplier.name }}</a>
+      </div>
+    </dd>
+  </dl>
+  <div class="detail-buttons">
+    <button
+      pButton
+      type="submit"
+      (click)="previousState()"
+      class="p-button-info"
+      icon="pi pi-arrow-left"
+      [label]="'entity.action.back' | translate"
+      data-cy="entityDetailsBackButton"
+    ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-pencil"
+      [label]="'entity.action.edit' | translate"
+      [routerLink]="['/part', part.id, 'edit']"
+    ></button>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="entity-detail" *ngIf="assembly">
+  <h2 class="title" data-cy="assemblyDetailsHeading">
+    <span jhiTranslate="partsApp.assembly.detail.title">Assembly</span> {{ assembly.parent!.id! }} / {{ assembly.child!.id! }}
+  </h2>
+
+  <dl class="detail-content jh-entity-details">
+    <dt><span jhiTranslate="partsApp.assembly.quantity">Quantity</span></dt>
+    <dd>
+      <span>{{ assembly.quantity }}</span>
+    </dd>
+    <dt><span jhiTranslate="partsApp.assembly.parent">Parent</span></dt>
+    <dd>
+      <div *ngIf="assembly.parent">
+        <a [routerLink]="['/part', assembly.parent.id, 'view']">{{ assembly.parent.name }}</a>
+      </div>
+    </dd>
+    <dt><span jhiTranslate="partsApp.assembly.child">Child</span></dt>
+    <dd>
+      <div *ngIf="assembly.child">
+        <a [routerLink]="['/part', assembly.child.id, 'view']">{{ assembly.child.name }}</a>
+      </div>
+    </dd>
+  </dl>
+  <div class="detail-buttons">
+    <button
+      pButton
+      type="submit"
+      (click)="previousState()"
+      class="p-button-info"
+      icon="pi pi-arrow-left"
+      [label]="'entity.action.back' | translate"
+      data-cy="entityDetailsBackButton"
+    ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-pencil"
+      [label]="'entity.action.edit' | translate"
+      [routerLink]="['/assembly', { parentId: assembly.parent!.id!, childId: assembly.child!.id! }, 'edit']"
+    ></button>
+  </div>
+</div>

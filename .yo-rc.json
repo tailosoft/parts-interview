@@ -1,0 +1,52 @@
+{
+  "generator-jhipster": {
+    "applicationIndex": 0,
+    "applicationType": "monolith",
+    "authenticationType": "session",
+    "baseName": "parts",
+    "blueprints": [
+      {
+        "name": "generator-jhipster-primeng-blueprint",
+        "version": "8.0.0"
+      }
+    ],
+    "buildTool": "gradle",
+    "cacheProvider": "ehcache",
+    "clientFramework": "angular",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1698708415108,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "devServerPort": 4200,
+    "dtoSuffix": "DTO",
+    "enableGradleEnterprise": false,
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "entities": ["Part", "Assembly", "Supplier", "PartSupplier"],
+    "entitySuffix": "",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "8.0.0-beta.1",
+    "languages": ["en", "fr"],
+    "lastLiquibaseTimestamp": 1698708418000,
+    "messageBroker": "no",
+    "nativeLanguage": "en",
+    "packageFolder": "com/tailosoft/interview/parts",
+    "packageName": "com.tailosoft.interview.parts",
+    "pages": [],
+    "prodDatabaseType": "postgresql",
+    "reactive": false,
+    "rememberMeKey": "d6db9f1b6604673eed7a4a8c98c05a9c9d86a75ff0775eee82a75b93292877f558a4bb9ef4a6acc23dcf8198967beed97fb7",
+    "searchEngine": "no",
+    "serverPort": 8080,
+    "serviceDiscoveryType": "no",
+    "skipCheckLengthOfIdentifier": false,
+    "skipClient": false,
+    "skipFakeData": false,
+    "skipUserManagement": false,
+    "testFrameworks": ["cypress"],
+    "websocket": "no",
+    "withAdminUi": true
+  }
+}

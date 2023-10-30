@@ -1,0 +1,57 @@
+application {
+    config {
+        baseName parts
+        authenticationType session
+        applicationType monolith
+        prodDatabaseType postgresql
+        buildTool gradle
+        packageName com.tailosoft.interview.parts
+        languages [en, fr]
+        testFrameworks [cypress]
+    }
+    entities *
+}
+
+@filter
+@paginate(pagination)
+entity Part {
+    name String required
+    assemblyCost Double
+    bestPrice Double // Either best supplier price or children composition prices
+}
+
+relationship ManyToOne {
+  Part{bestSupplier(name)} to Supplier /* If not Null, supplier has the best price in the market */
+}
+
+@filter
+@paginate(pagination)
+entity Assembly {
+    quantity Integer required
+}
+
+relationship ManyToOne {
+    Assembly{parent(name) required} to @id Part{child}
+    Assembly{child(name) required} to @id Part{parent}
+}
+
+@filter
+@paginate(pagination)
+entity Supplier {
+    name String required
+}
+
+
+@filter
+@paginate(pagination)
+entity PartSupplier {
+    price Double required
+}
+
+relationship ManyToOne {
+    PartSupplier{part(name) required} to @id Part
+    PartSupplier{supplier(name) required} to @id Supplier
+}
+
+dto * with mapstruct
+service * with serviceClass

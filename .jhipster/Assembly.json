@@ -1,0 +1,44 @@
+{
+  "applications": ["parts"],
+  "changelogDate": "20231030232656",
+  "dto": "mapstruct",
+  "entityTableName": "assembly",
+  "fields": [
+    {
+      "fieldName": "quantity",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Assembly",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "options": {
+        "id": true
+      },
+      "otherEntityField": "name",
+      "otherEntityName": "part",
+      "otherEntityRelationshipName": "child",
+      "relationshipName": "parent",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "options": {
+        "id": true
+      },
+      "otherEntityField": "name",
+      "otherEntityName": "part",
+      "otherEntityRelationshipName": "parent",
+      "relationshipName": "child",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

@@ -1,0 +1,30 @@
+{
+  "partsApp": {
+    "part": {
+      "home": {
+        "title": "Parts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Part",
+        "editLabel": "Edit a Part",
+        "notFound": "No Parts found"
+      },
+      "created": "A new Part is created with identifier {{ param }}",
+      "updated": "A Part is updated with identifier {{ param }}",
+      "deleted": "A Part is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Part {{ id }}?"
+      },
+      "detail": {
+        "title": "Part"
+      },
+      "id": "ID",
+      "name": "Name",
+      "assemblyCost": "Assembly Cost",
+      "bestPrice": "Best Price",
+      "bestSupplier": "Best Supplier",
+      "child": "Child",
+      "parent": "Parent",
+      "partSupplier": "Part Supplier"
+    }
+  }
+}

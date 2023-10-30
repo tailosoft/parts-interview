@@ -1,0 +1,110 @@
+<div class="entity-update">
+  <h2
+    class="title"
+    id="jhi-part-supplier-heading"
+    data-cy="PartSupplierCreateUpdateHeading"
+    jhiTranslate="partsApp.partSupplier.home.{{ edit ? 'editLabel' : 'createLabel' }}"
+  >
+    Create or edit a Part Supplier
+  </h2>
+  <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+    <div class="form-grid p-fluid update-content">
+      <div class="p-field p-grid">
+        <label jhiTranslate="partsApp.partSupplier.price" for="field_price" class="p-col-12 p-md-2 label-asterisk">Price</label>
+        <div class="p-col-12 p-md-10">
+          <input pInputText type="number" name="price" id="field_price" formControlName="price" data-cy="price" />
+          <div class="validation-messages">
+            <ng-container *ngIf="editForm.controls.price.errors && (editForm.controls.price.dirty || editForm.controls.price.touched)">
+              <p-message severity="error" *ngIf="editForm.controls.price.errors.required" [text]="'entity.validation.required' | translate">
+              </p-message>
+              <p-message severity="error" [hidden]="!editForm.controls.price.errors.number" [text]="'entity.validation.number' | translate">
+              </p-message>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <label jhiTranslate="partsApp.partSupplier.part" for="field_part" class="p-col-12 p-md-2 label-asterisk">Part</label>
+        <div class="p-col-12 p-md-10">
+          <p-dropdown
+            id="field_part"
+            formControlName="part"
+            [readonly]="edit"
+            [options]="partOptionsSubscriber!.options"
+            [lazy]="true"
+            [virtualScroll]="true"
+            [virtualScrollItemSize]="38"
+            (onLazyLoad)="onPartLazyLoadEvent($event)"
+            [filter]="true"
+            [filterValue]="partFilterValue"
+            placeholder="Choose"
+            optionLabel="name"
+            dataKey="id"
+            data-cy="part"
+          ></p-dropdown>
+          <div class="validation-messages">
+            <ng-container *ngIf="editForm.controls.part.errors && (editForm.controls.part.dirty || editForm.controls.part.touched)">
+              <p-message severity="error" *ngIf="editForm.controls.part.errors.required" [text]="'entity.validation.required' | translate">
+              </p-message>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <div class="p-field p-grid">
+        <label jhiTranslate="partsApp.partSupplier.supplier" for="field_supplier" class="p-col-12 p-md-2 label-asterisk">Supplier</label>
+        <div class="p-col-12 p-md-10">
+          <p-dropdown
+            id="field_supplier"
+            formControlName="supplier"
+            [readonly]="edit"
+            [options]="supplierOptionsSubscriber!.options"
+            [lazy]="true"
+            [virtualScroll]="true"
+            [virtualScrollItemSize]="38"
+            (onLazyLoad)="onSupplierLazyLoadEvent($event)"
+            [filter]="true"
+            [filterValue]="supplierFilterValue"
+            placeholder="Choose"
+            optionLabel="name"
+            dataKey="id"
+            data-cy="supplier"
+          ></p-dropdown>
+          <div class="validation-messages">
+            <ng-container
+              *ngIf="editForm.controls.supplier.errors && (editForm.controls.supplier.dirty || editForm.controls.supplier.touched)"
+            >
+              <p-message
+                severity="error"
+                *ngIf="editForm.controls.supplier.errors.required"
+                [text]="'entity.validation.required' | translate"
+              >
+              </p-message>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="update-buttons">
+      <button
+        pButton
+        type="button"
+        id="cancel-save"
+        icon="pi pi-ban"
+        class="p-button-secondary"
+        (click)="previousState()"
+        [label]="'entity.action.cancel' | translate"
+        data-cy="entityCreateCancelButton"
+      ></button>
+      <button
+        pButton
+        type="submit"
+        id="save-entity"
+        icon="pi pi-save"
+        [disabled]="isSaving"
+        [label]="'entity.action.save' | translate"
+        data-cy="entityCreateSaveButton"
+      ></button>
+    </div>
+  </form>
+</div>

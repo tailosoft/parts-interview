@@ -1,0 +1,136 @@
+<div class="entity-list">
+  <h2 class="title" id="page-heading" data-cy="PartHeading">
+    <span jhiTranslate="partsApp.part.home.title">Parts</span>
+  </h2>
+  <div class="list-buttons">
+    <p-button
+      id="jh-create-entity"
+      class="jh-create-entity create-part"
+      [routerLink]="['/part/new']"
+      [label]="'partsApp.part.home.createLabel' | translate"
+      icon="pi pi-plus"
+      iconPos="left"
+      data-cy="entityCreateButton"
+    >
+    </p-button>
+  </div>
+  <div class="list-content">
+    <p-table
+      #partTable
+      [value]="parts!"
+      [rowTrackBy]="trackId"
+      [responsive]="true"
+      [lazy]="true"
+      [rows]="itemsPerPage"
+      [totalRecords]="totalItems!"
+      [loading]="loading"
+      sortMode="multiple"
+      [paginator]="true"
+      (onLazyLoad)="onLazyLoadEvent($event)"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="id">
+            <span jhiTranslate="partsApp.part.id">ID</span>
+            <p-sortIcon field="id"></p-sortIcon>
+            <p-columnFilter type="numeric" field="id" display="menu" [showOperator]="false" class="p-ml-auto"></p-columnFilter>
+          </th>
+          <th pSortableColumn="name">
+            <span jhiTranslate="partsApp.part.name">Name</span>
+            <p-sortIcon field="name"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              matchMode="contains"
+              field="name"
+              display="menu"
+              [showOperator]="false"
+              class="p-ml-auto"
+            ></p-columnFilter>
+          </th>
+          <th pSortableColumn="assemblyCost">
+            <span jhiTranslate="partsApp.part.assemblyCost">Assembly Cost</span>
+            <p-sortIcon field="assemblyCost"></p-sortIcon>
+            <p-columnFilter type="numeric" field="assemblyCost" display="menu" [showOperator]="false" class="p-ml-auto"></p-columnFilter>
+          </th>
+          <th pSortableColumn="bestPrice">
+            <span jhiTranslate="partsApp.part.bestPrice">Best Price</span>
+            <p-sortIcon field="bestPrice"></p-sortIcon>
+            <p-columnFilter type="numeric" field="bestPrice" display="menu" [showOperator]="false" class="p-ml-auto"></p-columnFilter>
+          </th>
+          <th pSortableColumn="bestSupplier.name">
+            <span jhiTranslate="partsApp.part.bestSupplier">Best Supplier</span>
+            <p-sortIcon field="bestSupplier.name"></p-sortIcon>
+            <p-columnFilter
+              field="bestSupplierId"
+              matchMode="in"
+              display="menu"
+              [showOperator]="false"
+              [showMatchModes]="false"
+              [showAddButton]="false"
+              class="p-ml-auto"
+            >
+              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                <p-multiSelect
+                  [ngModel]="value"
+                  (onChange)="filter($event.value)"
+                  optionLabel="name"
+                  optionValue="id"
+                  [options]="bestSupplierOptionsSubscriber!.options"
+                  [lazy]="true"
+                  [virtualScroll]="true"
+                  [virtualScrollItemSize]="38"
+                  [lazySelectedOptions]="bestSupplierSelectedOptions!"
+                  (onLazyLoad)="onBestSupplierLazyLoadEvent($event)"
+                ></p-multiSelect>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th style="width: 124px"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-part>
+        <tr data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/part', part.id, 'view']">{{ part.id }}</a>
+          </td>
+          <td>{{ part.name }}</td>
+          <td>{{ part.assemblyCost }}</td>
+          <td>{{ part.bestPrice }}</td>
+          <td>
+            <div *ngIf="part.bestSupplier">
+              <a [routerLink]="['/supplier', part.bestSupplier.id, 'view']">{{ part.bestSupplier.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div class="btn-group flex-btn-group-container">
+              <p-button
+                type="submit"
+                [routerLink]="['/part', part.id!, 'view']"
+                icon="pi pi-eye"
+                styleClass="p-button-info"
+                data-cy="entityDetailsButton"
+              >
+              </p-button>
+              <p-button
+                type="submit"
+                [routerLink]="['/part', part.id!, 'edit']"
+                icon="pi pi-pencil"
+                styleClass="p-button-warning"
+                data-cy="entityEditButton"
+              >
+              </p-button>
+              <p-button
+                type="submit"
+                (click)="delete(part.id)"
+                icon="pi pi-times"
+                styleClass="p-button-danger"
+                data-cy="entityDeleteButton"
+              >
+              </p-button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

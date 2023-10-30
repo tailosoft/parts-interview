@@ -1,0 +1,48 @@
+<div class="entity-update">
+  <h2
+    class="title"
+    id="jhi-supplier-heading"
+    data-cy="SupplierCreateUpdateHeading"
+    jhiTranslate="partsApp.supplier.home.{{ editForm.value.id !== null ? 'editLabel' : 'createLabel' }}"
+  >
+    Create or edit a Supplier
+  </h2>
+  <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+    <div class="form-grid p-fluid update-content">
+      <div class="p-field p-grid">
+        <label jhiTranslate="partsApp.supplier.name" for="field_name" class="p-col-12 p-md-2 label-asterisk">Name</label>
+        <div class="p-col-12 p-md-10">
+          <input pInputText type="text" name="name" id="field_name" formControlName="name" data-cy="name" />
+          <div class="validation-messages">
+            <ng-container *ngIf="editForm.controls.name.errors && (editForm.controls.name.dirty || editForm.controls.name.touched)">
+              <p-message severity="error" *ngIf="editForm.controls.name.errors.required" [text]="'entity.validation.required' | translate">
+              </p-message>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="update-buttons">
+      <button
+        pButton
+        type="button"
+        id="cancel-save"
+        icon="pi pi-ban"
+        class="p-button-secondary"
+        (click)="previousState()"
+        [label]="'entity.action.cancel' | translate"
+        data-cy="entityCreateCancelButton"
+      ></button>
+      <button
+        pButton
+        type="submit"
+        id="save-entity"
+        icon="pi pi-save"
+        [disabled]="isSaving"
+        [label]="'entity.action.save' | translate"
+        data-cy="entityCreateSaveButton"
+      ></button>
+    </div>
+  </form>
+</div>

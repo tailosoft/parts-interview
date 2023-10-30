@@ -1,0 +1,25 @@
+{
+  "partsApp": {
+    "assembly": {
+      "home": {
+        "title": "Assemblies",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Assembly",
+        "editLabel": "Editer un Assembly",
+        "notFound": "Aucun Assembly trouvé"
+      },
+      "created": "Un nouveau Assembly a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Assembly avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Assembly avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Assembly {{ id }} ?"
+      },
+      "detail": {
+        "title": "Assembly"
+      },
+      "quantity": "Quantity",
+      "parent": "Parent",
+      "child": "Child"
+    }
+  }
+}

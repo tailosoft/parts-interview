@@ -1,0 +1,91 @@
+<div class="entity-list">
+  <h2 class="title" id="page-heading" data-cy="SupplierHeading">
+    <span jhiTranslate="partsApp.supplier.home.title">Suppliers</span>
+  </h2>
+  <div class="list-buttons">
+    <p-button
+      id="jh-create-entity"
+      class="jh-create-entity create-supplier"
+      [routerLink]="['/supplier/new']"
+      [label]="'partsApp.supplier.home.createLabel' | translate"
+      icon="pi pi-plus"
+      iconPos="left"
+      data-cy="entityCreateButton"
+    >
+    </p-button>
+  </div>
+  <div class="list-content">
+    <p-table
+      #supplierTable
+      [value]="suppliers!"
+      [rowTrackBy]="trackId"
+      [responsive]="true"
+      [lazy]="true"
+      [rows]="itemsPerPage"
+      [totalRecords]="totalItems!"
+      [loading]="loading"
+      sortMode="multiple"
+      [paginator]="true"
+      (onLazyLoad)="onLazyLoadEvent($event)"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="id">
+            <span jhiTranslate="partsApp.supplier.id">ID</span>
+            <p-sortIcon field="id"></p-sortIcon>
+            <p-columnFilter type="numeric" field="id" display="menu" [showOperator]="false" class="p-ml-auto"></p-columnFilter>
+          </th>
+          <th pSortableColumn="name">
+            <span jhiTranslate="partsApp.supplier.name">Name</span>
+            <p-sortIcon field="name"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              matchMode="contains"
+              field="name"
+              display="menu"
+              [showOperator]="false"
+              class="p-ml-auto"
+            ></p-columnFilter>
+          </th>
+          <th style="width: 124px"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-supplier>
+        <tr data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/supplier', supplier.id, 'view']">{{ supplier.id }}</a>
+          </td>
+          <td>{{ supplier.name }}</td>
+          <td>
+            <div class="btn-group flex-btn-group-container">
+              <p-button
+                type="submit"
+                [routerLink]="['/supplier', supplier.id!, 'view']"
+                icon="pi pi-eye"
+                styleClass="p-button-info"
+                data-cy="entityDetailsButton"
+              >
+              </p-button>
+              <p-button
+                type="submit"
+                [routerLink]="['/supplier', supplier.id!, 'edit']"
+                icon="pi pi-pencil"
+                styleClass="p-button-warning"
+                data-cy="entityEditButton"
+              >
+              </p-button>
+              <p-button
+                type="submit"
+                (click)="delete(supplier.id)"
+                icon="pi pi-times"
+                styleClass="p-button-danger"
+                data-cy="entityDeleteButton"
+              >
+              </p-button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

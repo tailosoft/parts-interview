@@ -1,0 +1,43 @@
+<div class="entity-detail" *ngIf="partSupplier">
+  <h2 class="title" data-cy="partSupplierDetailsHeading">
+    <span jhiTranslate="partsApp.partSupplier.detail.title">Part Supplier</span> {{ partSupplier.part!.id! }} /
+    {{ partSupplier.supplier!.id! }}
+  </h2>
+
+  <dl class="detail-content jh-entity-details">
+    <dt><span jhiTranslate="partsApp.partSupplier.price">Price</span></dt>
+    <dd>
+      <span>{{ partSupplier.price }}</span>
+    </dd>
+    <dt><span jhiTranslate="partsApp.partSupplier.part">Part</span></dt>
+    <dd>
+      <div *ngIf="partSupplier.part">
+        <a [routerLink]="['/part', partSupplier.part.id, 'view']">{{ partSupplier.part.name }}</a>
+      </div>
+    </dd>
+    <dt><span jhiTranslate="partsApp.partSupplier.supplier">Supplier</span></dt>
+    <dd>
+      <div *ngIf="partSupplier.supplier">
+        <a [routerLink]="['/supplier', partSupplier.supplier.id, 'view']">{{ partSupplier.supplier.name }}</a>
+      </div>
+    </dd>
+  </dl>
+  <div class="detail-buttons">
+    <button
+      pButton
+      type="submit"
+      (click)="previousState()"
+      class="p-button-info"
+      icon="pi pi-arrow-left"
+      [label]="'entity.action.back' | translate"
+      data-cy="entityDetailsBackButton"
+    ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-pencil"
+      [label]="'entity.action.edit' | translate"
+      [routerLink]="['/part-supplier', { partId: partSupplier.part!.id!, supplierId: partSupplier.supplier!.id! }, 'edit']"
+    ></button>
+  </div>
+</div>

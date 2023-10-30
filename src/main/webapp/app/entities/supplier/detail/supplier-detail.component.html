@@ -1,0 +1,34 @@
+<div class="entity-detail" *ngIf="supplier">
+  <h2 class="title" data-cy="supplierDetailsHeading">
+    <span jhiTranslate="partsApp.supplier.detail.title">Supplier</span> {{ supplier.id! }}
+  </h2>
+
+  <dl class="detail-content jh-entity-details">
+    <dt><span jhiTranslate="global.field.id">ID</span></dt>
+    <dd>
+      <span>{{ supplier.id }}</span>
+    </dd>
+    <dt><span jhiTranslate="partsApp.supplier.name">Name</span></dt>
+    <dd>
+      <span>{{ supplier.name }}</span>
+    </dd>
+  </dl>
+  <div class="detail-buttons">
+    <button
+      pButton
+      type="submit"
+      (click)="previousState()"
+      class="p-button-info"
+      icon="pi pi-arrow-left"
+      [label]="'entity.action.back' | translate"
+      data-cy="entityDetailsBackButton"
+    ></button>
+    <button
+      pButton
+      type="button"
+      icon="pi pi-pencil"
+      [label]="'entity.action.edit' | translate"
+      [routerLink]="['/supplier', supplier.id, 'edit']"
+    ></button>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "applications": ["parts"],
+  "changelogDate": "20231030232657",
+  "dto": "mapstruct",
+  "entityTableName": "supplier",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Supplier",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "partSupplier",
+      "otherEntityRelationshipName": "supplier",
+      "relationshipName": "partSupplier",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

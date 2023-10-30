@@ -1,0 +1,142 @@
+<div class="entity-list">
+  <h2 class="title" id="page-heading" data-cy="AssemblyHeading">
+    <span jhiTranslate="partsApp.assembly.home.title">Assemblies</span>
+  </h2>
+  <div class="list-buttons">
+    <p-button
+      id="jh-create-entity"
+      class="jh-create-entity create-assembly"
+      [routerLink]="['/assembly/new']"
+      [label]="'partsApp.assembly.home.createLabel' | translate"
+      icon="pi pi-plus"
+      iconPos="left"
+      data-cy="entityCreateButton"
+    >
+    </p-button>
+  </div>
+  <div class="list-content">
+    <p-table
+      #assemblyTable
+      [value]="assemblies!"
+      [rowTrackBy]="trackId"
+      [responsive]="true"
+      [lazy]="true"
+      [rows]="itemsPerPage"
+      [totalRecords]="totalItems!"
+      [loading]="loading"
+      sortMode="multiple"
+      [paginator]="true"
+      (onLazyLoad)="onLazyLoadEvent($event)"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="quantity">
+            <span jhiTranslate="partsApp.assembly.quantity">Quantity</span>
+            <p-sortIcon field="quantity"></p-sortIcon>
+            <p-columnFilter type="numeric" field="quantity" display="menu" [showOperator]="false" class="p-ml-auto"></p-columnFilter>
+          </th>
+          <th pSortableColumn="parent.name">
+            <span jhiTranslate="partsApp.assembly.parent">Parent</span>
+            <p-sortIcon field="parent.name"></p-sortIcon>
+            <p-columnFilter
+              field="parentId"
+              matchMode="in"
+              display="menu"
+              [showOperator]="false"
+              [showMatchModes]="false"
+              [showAddButton]="false"
+              class="p-ml-auto"
+            >
+              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                <p-multiSelect
+                  [ngModel]="value"
+                  (onChange)="filter($event.value)"
+                  optionLabel="name"
+                  optionValue="id"
+                  [options]="parentOptionsSubscriber!.options"
+                  [lazy]="true"
+                  [virtualScroll]="true"
+                  [virtualScrollItemSize]="38"
+                  [lazySelectedOptions]="parentSelectedOptions!"
+                  (onLazyLoad)="onParentLazyLoadEvent($event)"
+                ></p-multiSelect>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th pSortableColumn="child.name">
+            <span jhiTranslate="partsApp.assembly.child">Child</span>
+            <p-sortIcon field="child.name"></p-sortIcon>
+            <p-columnFilter
+              field="childId"
+              matchMode="in"
+              display="menu"
+              [showOperator]="false"
+              [showMatchModes]="false"
+              [showAddButton]="false"
+              class="p-ml-auto"
+            >
+              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                <p-multiSelect
+                  [ngModel]="value"
+                  (onChange)="filter($event.value)"
+                  optionLabel="name"
+                  optionValue="id"
+                  [options]="childOptionsSubscriber!.options"
+                  [lazy]="true"
+                  [virtualScroll]="true"
+                  [virtualScrollItemSize]="38"
+                  [lazySelectedOptions]="childSelectedOptions!"
+                  (onLazyLoad)="onChildLazyLoadEvent($event)"
+                ></p-multiSelect>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th style="width: 124px"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-assembly>
+        <tr data-cy="entityTable">
+          <td>{{ assembly.quantity }}</td>
+          <td>
+            <div *ngIf="assembly.parent">
+              <a [routerLink]="['/part', assembly.parent.id, 'view']">{{ assembly.parent.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="assembly.child">
+              <a [routerLink]="['/part', assembly.child.id, 'view']">{{ assembly.child.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div class="btn-group flex-btn-group-container">
+              <p-button
+                type="submit"
+                [routerLink]="['/assembly', { parentId: assembly.parent!.id!, childId: assembly.child!.id! }, 'view']"
+                icon="pi pi-eye"
+                styleClass="p-button-info"
+                data-cy="entityDetailsButton"
+              >
+              </p-button>
+              <p-button
+                type="submit"
+                [routerLink]="['/assembly', { parentId: assembly.parent!.id!, childId: assembly.child!.id! }, 'edit']"
+                icon="pi pi-pencil"
+                styleClass="p-button-warning"
+                data-cy="entityEditButton"
+              >
+              </p-button>
+              <p-button
+                type="submit"
+                (click)="delete(assembly.parent!.id!, assembly.child!.id!)"
+                icon="pi pi-times"
+                styleClass="p-button-danger"
+                data-cy="entityDeleteButton"
+              >
+              </p-button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
